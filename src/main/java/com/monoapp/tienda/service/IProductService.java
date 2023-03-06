@@ -1,6 +1,7 @@
 package com.monoapp.tienda.service;
 
 import com.monoapp.tienda.entity.Product;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.List;
 
@@ -12,5 +13,5 @@ public interface IProductService { // Declaro metodos
 
     List <Product> buscarProductName(String name);
 
-    public Product eliminarProducto (Long id);
+    public Product eliminarProducto(Long id) throws NoSuchFieldException;
 }

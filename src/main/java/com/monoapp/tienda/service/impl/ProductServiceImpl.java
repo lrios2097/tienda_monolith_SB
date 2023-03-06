@@ -7,6 +7,7 @@ import com.monoapp.tienda.service.IProductService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements IProductService {
@@ -36,8 +37,16 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public Product eliminarProducto(Long id){
-        productRepository.deleteById(id);
-        return null;
+    public Product eliminarProducto(Long id) throws NoSuchFieldException {
+        Optional<Product> product = productRepository.findById(id); //ubico si existe el product
+        if (product.isPresent()){
+            Product productEliminado = product.get(); //Capturo el product
+            productRepository.deleteById(id);
+            return productEliminado;
+        }else{
+            throw new NoSuchFieldException("No se encontró el producto con el id especificado");
+        }
+        /*productRepository.deleteById(id);
+        return null;*/
     }
 }

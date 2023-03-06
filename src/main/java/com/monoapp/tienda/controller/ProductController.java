@@ -29,9 +29,14 @@ public class ProductController {
         return productService.buscarproduct(id);
     }
 
-    @GetMapping("/buscar/{name}")
+    @GetMapping("/buscar/name/{name}")
     public List<Product> buscarNombre(String name){
         return productService.listarProduct();
+    }
+
+    @DeleteMapping("eliminar/{id}")
+    public Product eliminarProduct(@PathVariable Long id) throws NoSuchFieldException {
+        return productService.eliminarProducto(id);
     }
 
 
