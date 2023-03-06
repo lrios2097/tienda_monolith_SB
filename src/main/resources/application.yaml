@@ -1,0 +1,16 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: tienda
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database: POSTGRESQL
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tienda_black
+    username: postgres
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+
+
