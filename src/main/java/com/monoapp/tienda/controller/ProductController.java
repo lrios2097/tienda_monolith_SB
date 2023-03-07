@@ -2,6 +2,7 @@ package com.monoapp.tienda.controller;
 
 import com.monoapp.tienda.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.monoapp.tienda.service.IProductService;
 
@@ -37,6 +38,11 @@ public class ProductController {
     @DeleteMapping("eliminar/{id}")
     public Product eliminarProduct(@PathVariable Long id) throws NoSuchFieldException {
         return productService.eliminarProducto(id);
+    }
+
+    @PutMapping("editar/{id}")
+    public ResponseEntity<Product> editarProduct(@PathVariable Long id, @RequestBody Product productActualizado){
+        return productService.editarProducto(id, productActualizado);
     }
 
 
