@@ -41,7 +41,7 @@ public class ProductServiceImpl implements IProductService {
     public Product eliminarProducto(Long id) throws NoSuchFieldException {
         Optional<Product> product = productRepository.findById(id); //ubico si existe el product
         if (product.isPresent()){
-            Product productEliminado = product.get(); //Capturo el product
+            Product productEliminado = product.get(); //Capturo el product para mostrar beforedelete
             productRepository.deleteById(id);
             return productEliminado;
         }else{

@@ -36,4 +36,6 @@ public class Product {
     private Date createAt; //Importo Date de Java util
 
     private Boolean state;
+
+    private Long category;
 }
