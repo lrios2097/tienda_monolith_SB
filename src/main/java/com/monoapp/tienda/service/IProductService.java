@@ -1,5 +1,6 @@
 package com.monoapp.tienda.service;
 
+import com.monoapp.tienda.entity.Category;
 import com.monoapp.tienda.entity.Product;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +9,7 @@ import java.util.List;
 
 public interface IProductService { // Declaro metodos
 
-    public Product guardarProducto (Product product);
+    public Product guardarProducto (Product product, Long categoryId);
     List<Product> listarProduct();
     Product buscarproduct(Long id);
 

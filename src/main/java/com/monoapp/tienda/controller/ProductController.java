@@ -16,8 +16,8 @@ public class ProductController {
     private IProductService productService;
 
     @PostMapping("/crear")
-    public Product crear(@RequestBody Product product){
-        return productService.guardarProducto(product);
+    public Product crear(@RequestBody Product product, @RequestParam long categoryId){
+        return productService.guardarProducto(product, categoryId);
     }
 
     @GetMapping("/listar")

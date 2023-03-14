@@ -37,5 +37,8 @@ public class Product {
 
     private Boolean state;
 
-    private Long category;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
 }

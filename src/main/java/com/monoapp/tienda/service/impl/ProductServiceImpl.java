@@ -1,9 +1,13 @@
 package com.monoapp.tienda.service.impl;
 
+import com.monoapp.tienda.Exception.ResourceNotFoundException;
+import com.monoapp.tienda.entity.Category;
 import com.monoapp.tienda.entity.Product;
+import com.monoapp.tienda.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.monoapp.tienda.repository.ProductRepository;
 import com.monoapp.tienda.service.IProductService;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +19,14 @@ public class ProductServiceImpl implements IProductService {
 
     @Autowired
     private ProductRepository productRepository; //Inyeccion de dependias de la interfaz Producto repository, esta a su vez tiene JPA para poder heredar aqui
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Override
-    public Product guardarProducto(Product product) {
+    public Product guardarProducto(Product product, Long categoryId) {
+        Category category = categoryRepository.findById(categoryId).
+                orElseThrow(()->new ResourceNotFoundException("Categoria no existe" + categoryId));
+        product.setCategory(category);
         return productRepository.save(product);
     }
 
