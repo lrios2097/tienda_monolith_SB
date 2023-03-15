@@ -36,9 +36,12 @@ public class Product {
     private Date createAt; //Importo Date de Java util
 
     private Boolean state;
-
+    /*
     @ManyToOne
     @JoinColumn(name = "category_id")
-    private Category category;
+    private Category category;*/
+
+    @Column(name = "category_id")
+    private Long categoryId;
 
 }

@@ -1,6 +1,9 @@
 package com.monoapp.tienda.controller;
 
+import com.monoapp.tienda.Exception.ResourceNotFoundException;
+import com.monoapp.tienda.entity.Category;
 import com.monoapp.tienda.entity.Product;
+import com.monoapp.tienda.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +17,18 @@ public class ProductController {
 
     @Autowired
     private IProductService productService;
+    @Autowired
+    private ICategoryService categoryService;
 
     @PostMapping("/crear")
-    public Product crear(@RequestBody Product product, @RequestParam long categoryId){
-        return productService.guardarProducto(product, categoryId);
+    public Product crear(@RequestBody Product product){
+        Long categoryId = product.getCategoryId();
+        Category category= categoryService.buscarCategory(categoryId);
+        if (category == null) {
+            throw new ResourceNotFoundException("Categoria no existe " + categoryId);
+        }
+        product.setCategoryId(category.idCategory);
+        return productService.guardarProducto(product);
     }
 
     @GetMapping("/listar")

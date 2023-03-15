@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IProductService { // Declaro metodos
 
-    public Product guardarProducto (Product product, Long categoryId);
+    public Product guardarProducto (Product product);
     List<Product> listarProduct();
     Product buscarproduct(Long id);
 

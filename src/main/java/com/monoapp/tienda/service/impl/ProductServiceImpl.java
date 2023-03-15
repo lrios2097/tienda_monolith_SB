@@ -23,10 +23,15 @@ public class ProductServiceImpl implements IProductService {
     private CategoryRepository categoryRepository;
 
     @Override
-    public Product guardarProducto(Product product, Long categoryId) {
-        Category category = categoryRepository.findById(categoryId).
-                orElseThrow(()->new ResourceNotFoundException("Categoria no existe" + categoryId));
-        product.setCategory(category);
+    public Product guardarProducto(Product product) {
+        Long categoryId = product.getCategoryId();
+        Category category = categoryRepository.findById(product.getCategoryId()).
+                orElseThrow(()->new ResourceNotFoundException("Categoria no existe" + product.getCategoryId()));
+
+        if (categoryId == null) {
+            throw new IllegalArgumentException("El campo categoryId es obligatorio");
+        }
+        product.setCategoryId(product.getCategoryId());
         return productRepository.save(product);
     }
 
