@@ -66,6 +66,20 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
+    public Product eliminarProductoLogica(Long id) throws NoSuchFieldException {
+        Optional<Product> product = productRepository.findById(id);
+        if(product.isPresent()){
+            Product productExiste = product.get();
+            productExiste.setState(false);
+            Product productEliminado1 = productRepository.save(productExiste);
+            return productExiste;
+        }else{
+            throw new NoSuchFieldException("No se encontró el producto con el id especificado");
+        }
+
+    }
+
+    @Override
     public ResponseEntity<Product> editarProducto(Long id, Product productActualizado) {
         Optional<Product> product = productRepository.findById(id);
         if (product.isPresent()){

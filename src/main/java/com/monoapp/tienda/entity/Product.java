@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Where;
 
 //import jakarta.persistence.*; // No utilizar jakarta, utilizar javax de maven
 
@@ -19,6 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "product")
+@Where(clause = "state = true") // Eliminacion Logica
 public class Product {
 
     @Id //le indico a Hibernate que va a ser mi llave primaria

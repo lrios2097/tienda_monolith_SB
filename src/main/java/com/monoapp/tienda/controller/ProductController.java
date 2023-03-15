@@ -51,6 +51,11 @@ public class ProductController {
         return productService.eliminarProducto(id);
     }
 
+    @PutMapping("eliminarLog/{id}")
+    public Product eliminarProductLog(@PathVariable Long id) throws NoSuchFieldException {
+        return productService.eliminarProductoLogica(id);
+    }
+
     @PutMapping("editar/{id}")
     public ResponseEntity<Product> editarProduct(@PathVariable Long id, @RequestBody Product productActualizado){
         return productService.editarProducto(id, productActualizado);

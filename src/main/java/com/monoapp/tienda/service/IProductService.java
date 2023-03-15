@@ -17,5 +17,7 @@ public interface IProductService { // Declaro metodos
 
     public Product eliminarProducto(Long id) throws NoSuchFieldException;
 
+    public Product eliminarProductoLogica(Long id) throws NoSuchFieldException;
+
     public ResponseEntity<Product> editarProducto (Long id, Product productActualizado);
 }
